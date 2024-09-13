@@ -2,6 +2,7 @@
 import time
 import bcrypt
 from datetime import datetime, timedelta
+import unittest
 
 #dados dos usuários
 usuarios = {"master": bcrypt.hashpw("senha_master".encode('utf-8'), bcrypt.gensalt())}
@@ -94,7 +95,7 @@ if __name__ == "__main__":
     menu()
 
 
-import unittest
+#casos de testes
 
 class TestEstacionamentoSHEI(unittest.TestCase):
 
