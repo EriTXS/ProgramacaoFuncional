@@ -3,22 +3,22 @@ import time
 import bcrypt
 from datetime import datetime, timedelta
 
-# Dados dos usuários
+#dados dos usuários
 usuarios = {"master": bcrypt.hashpw("senha_master".encode('utf-8'), bcrypt.gensalt())}
 clientes = []
 
-# Função para criptografar senha
+#função para criptografar senha
 def criptografar_senha(senha):
     return bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt())
 
-# Função para verificar senha
+#função para verificar senha
 def verificar_senha(hash_senha, senha):
     return bcrypt.checkpw(senha.encode('utf-8'), hash_senha)
 
-# Função lambda para cálculo do preço
+#função lambda criada para cálculo do preço
 calcular_preco = lambda horas, minutos: (horas * 10) + (minutos // 15) * 3
 
-# Função de alta ordem (closure)
+#closure empregada dentro de uma função de alta ordem
 def criar_cliente_fun():
     def registrar_cliente(nome, placa, tipo):
         hora_entrada = datetime.now()
@@ -32,7 +32,7 @@ def criar_cliente_fun():
 
 registrar_cliente = criar_cliente_fun()
 
-# Tela de login
+#tela de login
 def login():
     print("Bem-vindo ao Estacionamento SHEI")
     while True:
@@ -44,7 +44,7 @@ def login():
         else:
             print("Usuário ou senha incorretos.\n")
 
-# Cadastrar cliente
+#cadastrar cliente
 def cadastrar_cliente():
     nome = input("Nome do cliente: ")
     placa = input("Placa do veículo: ")
@@ -52,7 +52,7 @@ def cadastrar_cliente():
     registrar_cliente(nome, placa, tipo)
     print("Cliente cadastrado com sucesso!\n")
 
-# Listar clientes
+#list comprehension usada para listar clientes
 def listar_clientes():
     agora = datetime.now()
     clientes_ativos = [cliente for cliente in clientes if cliente['tipo'] == 'diarista']
@@ -70,7 +70,7 @@ def listar_clientes():
         print(f"Nome: {cliente['nome']}, Placa: {cliente['placa']}, Mensalista")
     print()
 
-# Menu principal
+#menu principal
 def menu():
     login()
     while True:
@@ -89,6 +89,6 @@ def menu():
         else:
             print("Opção inválida!\n")
 
-# Iniciar aplicação
+#iniciar aplicação
 if __name__ == "__main__":
     menu()
